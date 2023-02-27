@@ -26,7 +26,7 @@ Route::get('/', function () {
                 'title' => 'First List',
                 'desc' => 'Escucha las palabras de las brujas'
             ],
-            [
+            [ 
                 'id' => 2,
                 'title' => 'Second List',
                 'desc' => 'Los secretos escondido en la noche'
