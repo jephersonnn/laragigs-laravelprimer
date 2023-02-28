@@ -21,16 +21,16 @@ Route::get('/', function () {
     // in this case, the string heading holds the word 'Trending'
         'heading' => 'Trending',
         'listings'=> [
-            [
-                'id' => 1,
-                'title' => 'First List',
-                'desc' => 'Escucha las palabras de las brujas'
-            ],
-            [ 
-                'id' => 2,
-                'title' => 'Second List',
-                'desc' => 'Los secretos escondido en la noche'
-            ]
+            // [
+            //     'id' => 1,
+            //     'title' => 'First List',
+            //     'desc' => 'Escucha las palabras de las brujas'
+            // ],
+            // [ 
+            //     'id' => 2,
+            //     'title' => 'Second List',
+            //     'desc' => 'Los secretos escondido en la noche'
+            // ]
         ]
     ]); //returns a view from views folder
 });
