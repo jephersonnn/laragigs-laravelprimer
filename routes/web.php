@@ -3,6 +3,9 @@
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
+//"import" the model Listing
+use App\Models\Listing; 
+
 use function PHPSTORM_META\map;
 
 /*
@@ -20,19 +23,15 @@ Route::get('/', function () {
     return view('listings', [ //after referencing a view, you can pass variables with an array.
     // in this case, the string heading holds the word 'Trending'
         'heading' => 'Trending',
-        'listings'=> [
-            // [
-            //     'id' => 1,
-            //     'title' => 'First List',
-            //     'desc' => 'Escucha las palabras de las brujas'
-            // ],
-            // [ 
-            //     'id' => 2,
-            //     'title' => 'Second List',
-            //     'desc' => 'Los secretos escondido en la noche'
-            // ]
-        ]
+        'listings'=> Listing::all()
     ]); //returns a view from views folder
+});
+
+//route in searching or finding a list
+Route::get('/listings/{id}', function($id){
+    return view('listing', [
+        'listing' => Listing::find($id)
+    ]);
 });
 
 // Route::get('/{id}', function($id){
