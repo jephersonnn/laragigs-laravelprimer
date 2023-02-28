@@ -1,15 +1,22 @@
 
 <h1>{{ $heading }}</h1>
 
-@if (count($listings) == 0)
+{{-- @if (count($listings) == 0)
     <p>No listings found</p>
-@endif
+@endif --}}
 
+@unless(count($listings) == 0) 
+{{-- if count(x) is not 0 --}}
 
 @foreach ($listings as $listing)
     <h2>{{ $listing['title']}}</h2>
     <p>{{ $listing['desc']}}</p>
 @endforeach
+
+@else
+{{-- else (when count is 0 --}}
+    <p>No listings found</p>
+@endunless
 
 {{-- below was the code if was not a blade template. observe the code structure above for blade templating}}
 {{-- <h1><?php echo $heading; ?></h1>
