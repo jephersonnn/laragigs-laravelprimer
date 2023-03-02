@@ -9,7 +9,7 @@
 
 @foreach ($listings as $listing)
 <a href="/listings/{{$listing['id']}}">{{ $listing['title']}}</a>
-    <p>{{ $listing['desc']}}</p>
+    <p>{{ $listing['description']}}</p>
 @endforeach
 
 @else
@@ -21,5 +21,5 @@
 {{-- <h1><?php echo $heading; ?></h1>
 <?php foreach ($listings as $listing) : ?>
     <h2><?php echo $listing['title']; ?> </h2>
-    <p><?php echo $listing['desc']; ?></p>
+    <p><?php echo $listing['description']; ?></p>
 <?php endforeach; ?> --}} 
