@@ -11,9 +11,9 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.index', [ //after referencing a view, you can pass variables with an array.
-            // in this case, the string heading holds the word 'Trending'
-            'heading' => 'Trending',
-            'listings' => Listing::all()
+            'listings' => Listing::latest()->filter(request((['tag'])))->get()
+            //if the <a> of a tag is clicked, a request will be sent, and the line above will handle the 
+            // /?tag request, and then listing.php will handle it from here
         ]); //returns a view from views folder
     }
 
