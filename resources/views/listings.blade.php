@@ -1,3 +1,6 @@
+@extends('layout') {{--this blade template extends layout.blade--}}
+
+@section('content') {{-- this content section will be yielded as coded at layout.blade--}}
 <h1>{{ $heading }}</h1>
 
 {{-- @if (count($listings) == 0)
@@ -23,3 +26,5 @@
     <h2><?php echo $listing['title']; ?> </h2>
     <p><?php echo $listing['description']; ?></p>
 <?php endforeach; ?> --}} 
+
+@endsection
