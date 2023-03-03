@@ -20,13 +20,6 @@ use function PHPSTORM_META\map;
 |
 */
 
-//List All
-Route::get('/', [ListingController::class, 'index']);
-//Router::get('/', [controller::class, 'method']);
-
-
-Route::get('/listings/{listing}', [ListingController::class, 'show']);
-
 // Common Resource Routes by convention:
 // index - show all 
 // show - show single dats
@@ -35,6 +28,14 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 // edit - show form to edit
 // update - update data
 // destroy - delete 
+
+//List All
+Route::get('/', [ListingController::class, 'index']);
+//Router::get('/', [controller::class, 'method']);
+
+//Show Single 
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
 
 
 
