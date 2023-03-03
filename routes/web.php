@@ -5,7 +5,7 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 //"import" the model Listing
-use App\Models\Listing; 
+use App\Models\Listing;
 
 use function PHPSTORM_META\map;
 
@@ -22,10 +22,25 @@ use function PHPSTORM_META\map;
 
 //List All
 Route::get('/', [ListingController::class, 'index']);
+//Router::get('/', [controller::class, 'method']);
 
-//Route model binding, cleaner codes
-//function(Listing) goes through if there's a matching listing ID
+
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// Common Resource Routes by convention:
+// index - show all 
+// show - show single dats
+// create - show form to create new
+// store - store new
+// edit - show form to edit
+// update - update data
+// destroy - delete 
+
+
+
+
+
+
 
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
