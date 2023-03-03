@@ -10,7 +10,7 @@ class ListingController extends Controller
     //show all listing
     public function index()
     {
-        return view('listings', [ //after referencing a view, you can pass variables with an array.
+        return view('listings.index', [ //after referencing a view, you can pass variables with an array.
             // in this case, the string heading holds the word 'Trending'
             'heading' => 'Trending',
             'listings' => Listing::all()
@@ -21,6 +21,6 @@ class ListingController extends Controller
     {
         //Route model binding, cleaner codes
         //function(Listing) goes through if there's a matching listing ID
-        return view('listing', ['listing' => $listing]);
+        return view('listings.show', ['listing' => $listing]);
     }
 }
