@@ -27,12 +27,18 @@ Route::get('/', function () {
     ]); //returns a view from views folder
 });
 
-//route in searching or finding a list
-Route::get('/listings/{id}', function($id){
-    return view('listing', [
-        'listing' => Listing::find($id)
-    ]);
+//Route model binding, cleaner codes
+//function(Listing) goes through if there's a matching listing ID
+Route::get('/listings/{listing}', function(Listing $listing){
+    return view('listing',['listing'=> $listing]);
 });
+
+//route in searching or finding a list, leads to listing.blade view
+// Route::get('/listings/{id}', function($id){
+//     return view('listing', [
+//         'listing' => Listing::find($id)
+//     ]);
+// });
 
 // Route::get('/{id}', function($id){
 //     #debugging: ddd == die dump debug
