@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,19 +20,12 @@ use function PHPSTORM_META\map;
 |
 */
 
-Route::get('/', function () {
-    return view('listings', [ //after referencing a view, you can pass variables with an array.
-    // in this case, the string heading holds the word 'Trending'
-        'heading' => 'Trending',
-        'listings'=> Listing::all()
-    ]); //returns a view from views folder
-});
+//List All
+Route::get('/', [ListingController::class, 'index']);
 
 //Route model binding, cleaner codes
 //function(Listing) goes through if there's a matching listing ID
-Route::get('/listings/{listing}', function(Listing $listing){
-    return view('listing',['listing'=> $listing]);
-});
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
