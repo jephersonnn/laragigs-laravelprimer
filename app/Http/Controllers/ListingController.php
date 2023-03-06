@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 // <!-- generate with $php artisan make:controller ListingController   -->
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
@@ -18,10 +19,31 @@ class ListingController extends Controller
         ]); //returns a view from views folder
     }
 
+    public function create(){
+        return view('listings.create');
+    }
+
+    public function store(Request $request){
+        $formFields = $request->validate([
+            'title'=>'required',
+            'company'=>['required', Rule::unique('listings','company')],
+            'location'=>'required',
+            'email'=>['required', Rule::unique('listings','email')],
+            'website'=>'required',
+            'tags'=>'required',
+            'description'=>'required',
+        ]);
+
+        return redirect('/');
+    }
+
+
     public function show(Listing $listing)
     {
         //Route model binding, cleaner codes
         //function(Listing) goes through if there's a matching listing ID
         return view('listings.show', ['listing' => $listing]);
     }
+
+
 }
