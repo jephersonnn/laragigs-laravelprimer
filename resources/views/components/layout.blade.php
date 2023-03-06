@@ -39,7 +39,7 @@
             </li>
         </ul>
     </nav>
-    <main>
+    <main class="pb-40">
         {{ $slot }}
     </main>
     <footer
