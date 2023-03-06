@@ -12,7 +12,7 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.index', [ //after referencing a view, you can pass variables with an array.
-            'listings' => Listing::latest()->filter(request((['tag','search'])))->get()
+            'listings' => Listing::latest()->filter(request((['tag','search'])))->paginate(10)
             //if the <a> of a tag is clicked, a request will be sent, and the line above will handle the 
             // /?tag request, and then listing.php will handle it from here.
             // if a search is initiated, then the line above will also handle the request and proceed to listing.php
