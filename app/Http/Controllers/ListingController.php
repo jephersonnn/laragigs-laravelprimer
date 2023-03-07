@@ -34,6 +34,10 @@ class ListingController extends Controller
             'description'=>'required',
         ]);
 
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos','public');
+        } //file upload
+
         //finally store the filled data
         Listing::create($formFields);
 
