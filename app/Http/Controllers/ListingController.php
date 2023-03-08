@@ -91,4 +91,6 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Listing deleted successfully!');
     }
+
+
 }

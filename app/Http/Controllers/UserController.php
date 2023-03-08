@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -31,6 +32,17 @@ class UserController extends Controller
         //Create login session
         auth()->login($user);
 
-        return redirect('/')->with('message','Registered and logged in!');
+        return redirect('/')->with('message', 'Registered and logged in!');
+    }
+
+    //Logout User
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('message', 'You have been logged out!');
     }
 }

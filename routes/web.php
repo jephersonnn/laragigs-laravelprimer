@@ -60,6 +60,9 @@ Route::get('/register', [UserController::class, 'create']);
 //Create New User (Store)
 Route::post('/users', [UserController::class, 'store']);
 
+//Logout User 
+Route::post('/logout', [UserController::class, 'logout']);
+
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
 //     return view('listing', [
