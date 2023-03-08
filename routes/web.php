@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ListingController;
+use App\Models\Listing;
 use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Route;
+use function PHPSTORM_META\map;
 
 //"import" the model Listing
-use App\Models\Listing;
+use Illuminate\Support\Facades\Route;
 
-use function PHPSTORM_META\map;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,11 @@ Route::delete('listings/{listing}', [ListingController::class,'destroy']);
 
 //Show Single 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+//---------------------
+
+//Show Register/Create Form
+Route::get('/register', [UserController::class, 'create']);
 
 
 //route in searching or finding a list, leads to listing.blade view
