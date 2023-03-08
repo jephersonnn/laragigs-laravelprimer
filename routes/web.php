@@ -35,19 +35,20 @@ Route::get('/', [ListingController::class, 'index']);
 //Router::get('/', [controller::class, 'method']);
 
 //Show Create Job List
-Route::get('/listings/create', [ListingController::class, 'create']);
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
+//on app.middleware.authenticate; attempting to post a job while logged out will redirect to login
 
 //Store Listing Data
-Route::post('/listings', [ListingController::class, 'store']);
+Route::post('/listings', [ListingController::class, 'store'])->middleware('auth');
 
 //Show Edit 
-Route::get('listings/{listing}/edit', [ListingController::class,'edit']);
+Route::get('listings/{listing}/edit', [ListingController::class,'edit'])->middleware('auth');
 
 //Update
-Route::put('listings/{listing}', [ListingController::class,'update']);
+Route::put('listings/{listing}', [ListingController::class,'update'])->middleware('auth');
 
 //Delete
-Route::delete('listings/{listing}', [ListingController::class,'destroy']);
+Route::delete('listings/{listing}', [ListingController::class,'destroy'])->middleware('auth');
 
 //Show Single 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
@@ -55,16 +56,18 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 //---------------------
 
 //Show Register/Create Form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+//guest middleware prevents auth'd users to access guest pages
+//change http.providers.RouteServiceProvider.php, to public const HOME = '/';
 
 //Create New User (Store)
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
 //Logout User 
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Show Login Form 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 
 //Log IN User
 Route::post('/users/authenticate', [UserController::class,'authenticate']);
