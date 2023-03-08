@@ -57,6 +57,8 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 //Show Register/Create Form
 Route::get('/register', [UserController::class, 'create']);
 
+//Create New User (Store)
+Route::post('/users', [UserController::class, 'store']);
 
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
