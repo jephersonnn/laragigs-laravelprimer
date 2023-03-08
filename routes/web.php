@@ -39,10 +39,14 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 //Store Listing Data
 Route::post('/listings', [ListingController::class, 'store']);
 
+//Show Edit 
+Route::get('listings/{listing}/edit', [ListingController::class,'edit']);
+
+//Update
+Route::put('listings/{listing}', [ListingController::class,'update']);
+
 //Show Single 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
-
-
 
 
 //route in searching or finding a list, leads to listing.blade view
