@@ -63,6 +63,12 @@ Route::post('/users', [UserController::class, 'store']);
 //Logout User 
 Route::post('/logout', [UserController::class, 'logout']);
 
+//Show Login Form 
+Route::get('/login', [UserController::class, 'login']);
+
+//Log IN User
+Route::post('/users/authenticate', [UserController::class,'authenticate']);
+
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
 //     return view('listing', [
