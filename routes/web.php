@@ -50,6 +50,9 @@ Route::put('listings/{listing}', [ListingController::class,'update'])->middlewar
 //Delete
 Route::delete('listings/{listing}', [ListingController::class,'destroy'])->middleware('auth');
 
+// Manage Listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+
 //Show Single 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
@@ -71,6 +74,8 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 
 //Log IN User
 Route::post('/users/authenticate', [UserController::class,'authenticate']);
+
+
 
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
