@@ -27,4 +27,9 @@ class Listing extends Model
                 //if the submit button on form search (on _search.blade), 
         }
     } // on the listing model, you will be able to filter model and the data
+
+    // Relationship to User
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
