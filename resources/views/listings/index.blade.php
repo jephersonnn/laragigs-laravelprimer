@@ -9,7 +9,6 @@
         <p>No listings found</p>
         @endif --}}
 
-
         @unless(count($listings) == 0)
             {{-- if count(x) is not 0 --}}
 

@@ -75,7 +75,15 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 //Log IN User
 Route::post('/users/authenticate', [UserController::class,'authenticate']);
 
+// Route::group(['middleware' => ['auth:sanctum']], function(){
+//     Route::get('/listings/create', [ListingController::class, 'create']);
+//     Route::post('/listings', [ListingController::class, 'store']);
+//     Route::get('listings/{listing}/edit', [ListingController::class,'edit']);
+//     Route::put('listings/{listing}', [ListingController::class,'update']);
+//     Route::delete('listings/{listing}', [ListingController::class,'destroy']);
+//     Route::get('/listings/manage', [ListingController::class, 'manage']);
 
+// });
 
 //route in searching or finding a list, leads to listing.blade view
 // Route::get('/listings/{id}', function($id){
