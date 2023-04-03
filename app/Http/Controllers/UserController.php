@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -32,8 +33,12 @@ class UserController extends Controller
 
         //Create login session
         //
-        $user->createToken('myapptoken')->plainTextToken;
-        return redirect('/')->with('message', 'Registered and logged in!');
+        
+        //$user->createToken('myapptoken')->plainTextToken;
+        // return response()->json([
+        //     'token' => $user->createToken('myapptoken')->plainTextToken
+        // ]);
+        return redirect('/')->with('message', 'Registered! Please log in using your credentials');
 
         //TODO: add tokens here
 
@@ -42,12 +47,15 @@ class UserController extends Controller
     //Logout User
     public function logout(Request $request)
     {
-        // auth()->logout();
+        Auth::guard('web')->logout();
 
         // $request->session()->invalidate();
         // $request->session()->regenerateToken();
-        auth()->user()->tokens()->delete();
+        // //FIXME:
+        //auth()->user()->tokens()->delete();
 
+        // auth('sanctum')->user()->currentAccessToken()->delete();
+        //Auth::logout();
         return redirect('/')->with('message', 'You have been logged out!');
     }
 
@@ -65,16 +73,14 @@ class UserController extends Controller
             'password' => ['required'],
         ]);
 
-        $user = User::where('email', $formFields['email'])->first();
-
-        if (!$user || !Hash::check($formFields['password'], $user->password)) {
+        if( !Auth::attempt($formFields))
+        {
             return response([
                 'message' => 'Credentials do not match'
-            ], 401);
+            ]);
         }
 
-        $user->createToken('myapptoken')->plainTextToken;
-
+        $user = User::where('email', $formFields['email'])->first();
 
         // if (auth()->attempt($formFields)) {
         //     $request->session()->regenerate();
@@ -82,6 +88,26 @@ class UserController extends Controller
         //     return redirect('/')->with('message', 'You are logged in!');
         // }
 
+        // if (!$user || !Hash::check($formFields['password'], $user->password)) {
+        //     return response([
+        //         'message' => 'Credentials do not match'
+        //     ], 401);
+        // }
+
+        $user->createToken('myapptoken')->plainTextToken;
+      
+
+        if (Auth::check())
+        {
+            return redirect('/')->with('message', 'You are logged in!');
+        }
+        else
+        {
+            return response()->json([
+                'message' => "Wala ko naka log in betch"
+            ]);
+        }
+        
         return back()->withErrors(['email' => 'Email or password is wrong'])->onlyInput();
     }
 }

@@ -20,6 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Logout User 
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+
+
 # http://laragigs.test/search?name=Hello&city=CDO ----------------------
 // Route::get('/search', function (Request $request) {
 //     return $request->name . ' ' . $request->city;
