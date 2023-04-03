@@ -47,12 +47,13 @@ class UserController extends Controller
     //Logout User
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
+        //Auth::user()->currentAccessToken()->delete();
 
         // $request->session()->invalidate();
         // $request->session()->regenerateToken();
-        // //FIXME:
-        //auth()->user()->tokens()->delete();
+        //FIXME:
+        auth()->guard('web')->logout();
+        auth()->user()->tokens()->delete();
 
         // auth('sanctum')->user()->currentAccessToken()->delete();
         //Auth::logout();
