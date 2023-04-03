@@ -31,32 +31,17 @@ class UserController extends Controller
         //Create user and push to db
         $user = User::create($formFields);
 
-        //Create login session
-        //
-        
-        //$user->createToken('myapptoken')->plainTextToken;
-        // return response()->json([
-        //     'token' => $user->createToken('myapptoken')->plainTextToken
-        // ]);
         return redirect('/')->with('message', 'Registered! Please log in using your credentials');
-
-        //TODO: add tokens here
 
     }
 
     //Logout User
     public function logout(Request $request)
     {
-        //Auth::user()->currentAccessToken()->delete();
 
-        // $request->session()->invalidate();
-        // $request->session()->regenerateToken();
-        //FIXME:
         auth()->guard('web')->logout();
         auth()->user()->tokens()->delete();
 
-        // auth('sanctum')->user()->currentAccessToken()->delete();
-        //Auth::logout();
         return redirect('/')->with('message', 'You have been logged out!');
     }
 
@@ -82,18 +67,6 @@ class UserController extends Controller
         }
 
         $user = User::where('email', $formFields['email'])->first();
-
-        // if (auth()->attempt($formFields)) {
-        //     $request->session()->regenerate();
-
-        //     return redirect('/')->with('message', 'You are logged in!');
-        // }
-
-        // if (!$user || !Hash::check($formFields['password'], $user->password)) {
-        //     return response([
-        //         'message' => 'Credentials do not match'
-        //     ], 401);
-        // }
 
         $user->createToken('myapptoken')->plainTextToken;
       
